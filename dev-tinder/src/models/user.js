@@ -17,7 +17,7 @@ const userSchema=new mongoose.Schema({
         required:true,
         unique:true,
         lowercase:true,
-        trim:true  ,//avoid spaces before in and after while entering email
+        trim:true  ,//avoid spaces before and after while entering email
         validate(value){
             if(!validator.isEmail(value))
             {
@@ -66,7 +66,7 @@ userSchema.methods.getJWT = async function() {
     
     try {
         const token = await jwt.sign({ _id: user._id.toString() }, "D**p@k*1164", { expiresIn: "1d" });
-        console.log("Generated JWT Token:", token);  // Check if the token is being generated correctly
+        // console.log("Generated JWT Token:", token);  // Check if the token is being generated correctly
         return token;
     } catch (error) {
         console.error("Error in generating JWT:", error.message);
